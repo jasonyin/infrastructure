@@ -41,6 +41,5 @@ module "object_storage" {
   depends_on = [module.object_storage]
 
   compartment_id      = var.compartment_id
-  tenancy_ocid        = var.tenancy_ocid
   bucket_namespace    = var.bucket_namespace
 }

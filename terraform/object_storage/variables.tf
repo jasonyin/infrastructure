@@ -6,5 +6,4 @@ variable "compartment_id" {
 variable "bucket_namespace" {
   description = "bucket namespace"
   type        = string
-  default     = "axxnd9gqk5wt"
 }
