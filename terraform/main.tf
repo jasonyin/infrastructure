@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "oci" {
-  private_key = var.private_key
+  auth = "InstancePrincipal"
   region = var.region
   tenancy_ocid = var.tenancy_ocid
   user_ocid = var.user_ocid
@@ -39,10 +39,10 @@ module "compute" {
   ssh_authorized_keys = var.ssh_authorized_keys
 
   cidr_blocks = local.cidr_blocks
-}*/
+}
 
 module "object_storage" {
   source = "./object_storage"
 
   compartment_id   = var.compartment_id
-}
+}*/
