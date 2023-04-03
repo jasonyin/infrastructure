@@ -34,11 +34,6 @@ variable "user_ocid" {
   type        = list(any)
 }*/
 
-variable "bucket_namespace" {
-  description = "bucket namespace"
-  type        = string
-}
-
 locals {
   cidr_blocks            = ["10.0.0.0/24"]
   ssh_managemnet_network = "1.1.1.1/32"

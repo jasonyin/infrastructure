@@ -1,8 +1,3 @@
-// resources for namespace
-resource "oci_objectstorage_namespace_metadata" "namespace-metadata1" {
-  namespace                    = data.oci_objectstorage_namespace.ns.namespace
-}
-
 // resources for buckets
 
 resource "oci_objectstorage_bucket" "bronze_bucket" {

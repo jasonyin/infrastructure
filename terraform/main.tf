@@ -11,6 +11,11 @@ terraform {
 
 provider "oci" {
   private_key = var.private_key
+  region = var.region
+  tenancy_ocid = var.tenancy_ocid
+  user_ocid = var.user_ocid
+  fingerprint = var.fingerprint
+  private_key_path = var.private_key_path
 }
 
 /*module "network" {
@@ -40,5 +45,4 @@ module "object_storage" {
   source = "./object_storage"
 
   compartment_id   = var.compartment_id
-  bucket_namespace = var.bucket_namespace
 }
