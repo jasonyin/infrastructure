@@ -29,15 +29,14 @@ variable "user_ocid" {
   type        = string
 }
 
-variable "ssh_authorized_keys" {
+/*variable "ssh_authorized_keys" {
   description = "List of authorized SSH keys"
   type        = list(any)
-}
+}*/
 
 variable "bucket_namespace" {
   description = "bucket namespace"
   type        = string
-  default     = "axxnd9gqk5wt"
 }
 
 locals {
