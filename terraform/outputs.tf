@@ -1,3 +1,7 @@
-output "cluster_token" {
-  value = module.compute.cluster_token
+output "namespace" {
+  value = module.object_storage.namespace
+}
+
+output "buckets" {
+  value = module.object_storage.buckets
 }

@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "oci" {
-  private_key          = var.private_key
+  private_key = var.private_key
 }
 
 /*module "network" {
@@ -37,9 +37,8 @@ module "compute" {
 }*/
 
 module "object_storage" {
-  source     = "./object_storage"
-  depends_on = [module.object_storage]
+  source = "./object_storage"
 
-  compartment_id      = var.compartment_id
-  bucket_namespace    = var.bucket_namespace
+  compartment_id   = var.compartment_id
+  bucket_namespace = var.bucket_namespace
 }

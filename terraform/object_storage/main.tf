@@ -1,8 +1,15 @@
-resource "oci_objectstorage_bucket" "lake_bucket" {
+// resources for namespace
+resource "oci_objectstorage_namespace_metadata" "namespace-metadata1" {
+  namespace                    = data.oci_objectstorage_namespace.ns.namespace
+}
+
+// resources for buckets
+
+resource "oci_objectstorage_bucket" "bronze_bucket" {
     #Required
     compartment_id = var.compartment_id
+    namespace = data.oci_objectstorage_namespace.ns.namespace
     name = "bronze"
-    namespace = var.bucket_namespace
 
 /*     #Optional
     access_type = var.bucket_access_type
