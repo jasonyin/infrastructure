@@ -19,17 +19,18 @@ variable "region" {
   default     = "us-phoenix-1"
 }
 
-variable "tenancy_ocid" {
-  description = "The tenancy OCID."
-  type        = string
-}
-
 variable "user_ocid" {
   description = "The user OCID."
   type        = string
 }
 
-/*variable "ssh_authorized_keys" {
+/*
+variable "tenancy_ocid" {
+  description = "The tenancy OCID."
+  type        = string
+}
+
+variable "ssh_authorized_keys" {
   description = "List of authorized SSH keys"
   type        = list(any)
 }*/
