@@ -1,0 +1,10 @@
+#Author: <Jason Yin> (jasonyin@live.com)
+#File: dependabot.yml (c) 2023
+#Created: 2023-04-04T19:52:46.699Z
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
