@@ -2,20 +2,18 @@ terraform {
   required_version = ">= 1.2.0"
   required_providers {
     oci = {
-      source  = "oracle/oci"
-      version = ">= 3.70.0"
-      source  = "oracle/oci"
+      source  = "hashicorp/oci"
+      version = ">= 4.65.0"
     }
   }
 }
 
 provider "oci" {
-  #region = var.region
-  region = "us-phoenix-1"
-  #tenancy_ocid = var.tenancy_ocid
-  #user_ocid = var.user_ocid
-  #fingerprint = var.fingerprint
-  #private_key = var.private_key
+  region = var.region
+  tenancy_ocid = var.tenancy_ocid
+  user_ocid = var.user_ocid
+  fingerprint = var.fingerprint
+  private_key_path = var.private_key_path
 }
 
 /*module "network" {
