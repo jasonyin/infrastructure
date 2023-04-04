@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.0.0"
+  required_version = ">= 1.2.0"
   required_providers {
     oci = {
       source  = "oracle/oci"
@@ -10,7 +10,8 @@ terraform {
 }
 
 provider "oci" {
-  region = var.region
+  #region = var.region
+  region = "us-phoenix-1"
   #tenancy_ocid = var.tenancy_ocid
   #user_ocid = var.user_ocid
   #fingerprint = var.fingerprint
