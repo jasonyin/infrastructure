@@ -41,7 +41,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Go to directory
-        run: cd infrastructure/terraform
+        run: cd /home/runner/work/infrastructure/infrastructure/terraform
 
       - name: Terraform Format
         id: fmt
