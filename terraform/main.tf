@@ -10,7 +10,6 @@ terraform {
 }
 
 provider "oci" {
-  auth = "InstancePrincipal"
   region = var.region
   tenancy_ocid = var.tenancy_ocid
   user_ocid = var.user_ocid
@@ -41,8 +40,11 @@ module "compute" {
   cidr_blocks = local.cidr_blocks
 }
 
+*/
+
 module "object_storage" {
   source = "./object_storage"
 
   compartment_id   = var.compartment_id
-}*/
+  tenant_id =  var.tenancy_ocid
+}
