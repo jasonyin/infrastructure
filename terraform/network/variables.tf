@@ -14,7 +14,12 @@ variable "tenancy_ocid" {
   type        = string
 }
 
-locals {
-  cidr_blocks            = ["10.0.0.0/24"]
-  ssh_managemnet_network = "1.1.1.1/32"
+variable "ssh_managemnet_network" {
+  description = "Subnet allowed to ssh to hosts"
+  type        = string
+}
+
+variable "cidr_blocks" {
+  description = "CIDRs of the network, use index 0 for everything"
+  type        = list(any)
 }

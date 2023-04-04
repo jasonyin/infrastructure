@@ -25,24 +25,23 @@ provider "oci" {
 module "network" {
   source = "./network"
 
-  compartment_id = var.compartment_id
-  tenancy_ocid   = var.tenancy_ocid
+  compartment_id         = var.compartment_id
+  tenancy_ocid           = var.tenancy_ocid
+  cidr_blocks            = local.cidr_blocks
+  ssh_managemnet_network = local.ssh_managemnet_network
 }
 
-/*module "compute" {
+module "compute" {
   source     = "./compute"
   depends_on = [module.network]
 
   compartment_id      = var.compartment_id
   tenancy_ocid        = var.tenancy_ocid
-  cluster_subnet_id   = module.network.cluster_subnet.id
-  permit_ssh_nsg_id   = module.network.permit_ssh.id
+  cidr_blocks         = local.cidr_blocks
+  cluster_subnet_id   = module.network.output_cluster_subnet.id
+  permit_ssh_nsg_id   = module.network.output_permit_ssh.id
   ssh_authorized_keys = var.ssh_authorized_keys
-
-  cidr_blocks = local.cidr_blocks
 }
-
-*/
 
 module "object_storage" {
   source = "./object_storage"

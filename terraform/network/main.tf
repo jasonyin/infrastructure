@@ -7,7 +7,7 @@ Created: 2023-04-04T17:48:39.135Z
 resource "oci_core_vcn" "cluster_network" {
   compartment_id = var.compartment_id
 
-  cidr_blocks = local.cidr_blocks
+  cidr_blocks = var.cidr_blocks
 
   display_name = "cluster-vcn"
   dns_label    = "internal"
@@ -26,7 +26,7 @@ resource "oci_core_default_security_list" "default_list" {
   ingress_security_rules {
     protocol    = "all"
     description = "Allow inter-subnet traffic"
-    source      = local.cidr_blocks[0]
+    source      = var.cidr_blocks[0]
   }
 }
 
@@ -64,7 +64,7 @@ resource "oci_core_network_security_group" "permit_ssh" {
 resource "oci_core_network_security_group_security_rule" "permit_ssh" {
   network_security_group_id = oci_core_network_security_group.permit_ssh.id
   protocol                  = "6" // TCP
-  source                    = local.ssh_managemnet_network
+  source                    = var.ssh_managemnet_network
   source_type               = "CIDR_BLOCK"
   tcp_options {
     destination_port_range {
