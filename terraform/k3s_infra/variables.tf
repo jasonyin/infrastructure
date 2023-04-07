@@ -1,3 +1,14 @@
+/*
+Author: <Jason Yin> (jasonyin@live.com)
+File: variables.tf (c) 2023
+Created: 2023-04-05T02:30:09.426Z
+*/
+
+variable "project_name" {
+  description = "Project name"
+  type        = string
+}
+
 variable "compartment_id" {
   description = "OCI Compartment ID"
   type        = string
@@ -54,7 +65,5 @@ variable "whitelist_subnets" {
   type        = list(any)
 }
 
-locals {
-  freetier_server_ad_list = 3
-  freetier_worker_ad_list = [1, 2, 3]
-}
+variable "freetier_worker_ad_list" {}
+variable "freetier_server_ad_list" {}
