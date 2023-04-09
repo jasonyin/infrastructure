@@ -6,7 +6,7 @@ Created: 2023-04-04T17:13:25.068Z
 
 data "oci_objectstorage_namespace" "ns" {
   #Optional
-  compartment_id = var.tenant_id
+  compartment_id = var.tenancy_ocid
 }
 
 
