@@ -53,7 +53,7 @@ resource "oci_core_instance" "server" {
 }
 
 locals {
-  server_template = templatefile("${path.module}/scripts/server.template.sh", {
+  server_template = templatefile("${path.module}/cloud-init/scripts/server.template.sh", {
     cluster_token = random_password.cluster_token.result
   })
 }

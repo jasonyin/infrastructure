@@ -150,7 +150,7 @@ resource "oci_core_instance" "worker" {
 # }
 
 locals {
-  worker_template = templatefile("${path.module}/scripts/worker.template.sh", {
+  worker_template = templatefile("${path.module}/cloud-init/scripts/worker.template.sh", {
     cluster_token = random_password.cluster_token.result,
   })
 }

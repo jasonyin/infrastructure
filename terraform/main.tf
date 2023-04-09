@@ -50,10 +50,3 @@ module "compute" {
   permit_ssh_nsg_id   = module.network.output_permit_ssh.id
   ssh_authorized_keys = var.ssh_authorized_keys
 }*/
-
-module "object_storage" {
-  source = "./object_storage"
-
-  compartment_id = var.compartment_id
-  tenant_id      = var.tenancy_ocid
-}
