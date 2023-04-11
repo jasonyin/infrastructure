@@ -49,6 +49,11 @@ variable "public_subnet" {
   type        = string
 }
 
+variable "db_subnet" {
+  description = "The public subnet CIDRs."
+  type        = string
+}
+
 variable "whitelist_subnets" {
   description = "CIDRs of the network, use index 0 for everything"
   type        = list(any)

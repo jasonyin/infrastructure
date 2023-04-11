@@ -32,6 +32,14 @@ resource "oci_core_subnet" "public_subnet" {
   dns_label      = "public"
 }
 
+resource "oci_core_subnet" "db_public_subnet" {
+  cidr_block     = var.db_subnet
+  compartment_id = var.compartment_id
+  vcn_id         = oci_core_vcn.main.id
+  display_name   = "db_public_subnet"
+  dns_label      = "database"
+}
+
 resource "oci_core_subnet" "private_subnet" {
   cidr_block     = var.private_subnet
   compartment_id = var.compartment_id

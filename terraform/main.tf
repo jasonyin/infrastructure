@@ -22,6 +22,7 @@ module "k3s_infra" {
   vcn_subnet        = var.vcn_subnet
   private_subnet    = var.private_subnet
   public_subnet     = var.public_subnet
+  db_subnet         = var.db_subnet
 
   freetier_server_ad_list = local.freetier_server_ad_list
   freetier_worker_ad_list = local.freetier_worker_ad_list

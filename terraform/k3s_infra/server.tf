@@ -8,11 +8,7 @@ resource "random_password" "cluster_token" {
   length = 64
 }
 
-resource "random_password" "sqlpassword" {
-  length = 24
-}
-
-resource "oci_core_instance" "server" {
+resource "oci_core_instance" "primary_server" {
   availability_domain = data.oci_identity_availability_domains.ad_list.availability_domains.0.name
   compartment_id      = var.compartment_id
   shape               = "VM.Standard.E2.1.Micro"
@@ -26,23 +22,9 @@ resource "oci_core_instance" "server" {
     hostname_label   = "server"
   }
 
-  agent_config {
-    plugins_config {
-      name          = "OS Management Service Agent"
-      desired_state = "DISABLED"
-    }
-  }
-
   source_details {
     source_id   = data.oci_core_images.amd64.images.0.id
     source_type = "image"
-  }
-
-  metadata = {
-    "ssh_authorized_keys" = join("\n", var.ssh_authorized_keys)
-    "user_data" = base64encode(templatefile("${path.module}/cloud-init/cloud-init.template.yaml", {
-      bootstrap_sh_content = base64gzip(local.server_template)
-    }))
   }
 
   lifecycle {
@@ -50,10 +32,64 @@ resource "oci_core_instance" "server" {
       source_details
     ]
   }
+
+  agent_config {
+    plugins_config {
+      name          = "OS Management Service Agent"
+      desired_state = "DISABLED"
+    }
+  }
+
+  metadata = {
+    "ssh_authorized_keys" = join("\n", var.ssh_authorized_keys)
+    "user_data" = base64encode(templatefile("${path.module}/cloud-init/cloud-init.template.yaml", {
+      bootstrap_sh_content = base64gzip(templatefile("${path.module}/cloud-init/scripts/server.template.sh", {
+        cluster_token = random_password.cluster_token.result
+        first_server  = "true"
+      }))
+    }))
+  }
 }
 
-locals {
-  server_template = templatefile("${path.module}/cloud-init/scripts/server.template.sh", {
-    cluster_token = random_password.cluster_token.result
-  })
-}
+# resource "oci_core_instance" "secondary_servers" {
+#   count = 1
+#   availability_domain = data.oci_identity_availability_domains.ad_list.availability_domains.0.name
+#   compartment_id      = var.compartment_id
+#   shape               = "VM.Standard.E2.1.Micro"
+
+#   display_name = "${var.project_name}_server_${count.index + 1}"
+
+#   create_vnic_details {
+#     subnet_id        = oci_core_subnet.public_subnet.id
+#   }
+
+#   metadata = {
+#     "ssh_authorized_keys" = join("\n", var.ssh_authorized_keys)
+#     "user_data" = base64encode(templatefile("${path.module}/cloud-init/cloud-init.template.yaml", {
+#       bootstrap_sh_content = base64gzip(templatefile("${path.module}/cloud-init/scripts/server.template.sh", {
+#     cluster_token = random_password.cluster_token.result
+#     first_server = "false"
+#   }))
+#     }))
+#   }
+
+#   source_details {
+#     source_id   = data.oci_core_images.amd64.images.0.id
+#     source_type = "image"
+#   }
+
+#   lifecycle {
+#     ignore_changes = [
+#       source_details
+#     ]
+#   }
+
+#   agent_config {
+#     plugins_config {
+#       name          = "OS Management Service Agent"
+#       desired_state = "DISABLED"
+#     }
+#   }
+
+#   depends_on = [oci_core_instance.primary_server]
+# }
