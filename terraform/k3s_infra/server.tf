@@ -45,6 +45,7 @@ resource "oci_core_instance" "primary_server" {
     "user_data" = base64encode(templatefile("${path.module}/cloud-init/cloud-init.template.yaml", {
       bootstrap_sh_content = base64gzip(templatefile("${path.module}/cloud-init/scripts/server.template.sh", {
         cluster_token = random_password.cluster_token.result
+        sqlpassword = random_password.sqlpassword.result
         first_server  = "true"
       }))
     }))
