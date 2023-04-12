@@ -7,7 +7,7 @@ systemctl disable firewalld --now
 iptables -A INPUT -i ens3 -p tcp --dport 6443 -j DROP
 iptables -I INPUT -i ens3 -p tcp -s 10.0.0.0/8  --dport 6443 -j ACCEPT
 
-curl -sfL https://get.k3s.io | K3S_TOKEN='${cluster_token}' sh -s - server --cluster-init
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable=traefik --cluster-init" K3S_TOKEN='${cluster_token}' sh -
 
 # check tcp to k3s and wait for 200s
 for ((i=0; i<=10; i++));
@@ -24,5 +24,10 @@ cp /etc/rancher/k3s/k3s.yaml /home/opc/.kube/config
 sed -i "s/127.0.0.1/$(hostname -i)/g" /home/opc/.kube/config
 chown opc:opc /home/opc/.kube/ -R
 
+cat > ~/.profile << EOF
 export KUBECONFIG=~/.kube/config
+EOF
+
 iptables -D INPUT -i ens3 -p tcp --dport 6443 -j DROP
+
+echo 'k3s server node installed!!!!'

@@ -9,3 +9,5 @@ while ! nc -vzw20 server.public.main.oraclevcn.com 6443; do
 done
 
 curl -sfL https://get.k3s.io | K3S_URL=https://server.public.main.oraclevcn.com:6443 K3S_TOKEN='${cluster_token}' sh -
+
+echo 'k3s worker node installed!!!!'
