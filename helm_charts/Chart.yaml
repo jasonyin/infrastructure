@@ -1,0 +1,12 @@
+#Author: <Jason Yin> (jasonyin@live.com)
+#File: chart.yaml (c) 2023
+#Created: 2023-04-19T16:12:25.587Z
+
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart for SparkOperator and JupyterHub
+name: lakehouse-chart
+version: 0.1.0
+maintainers: # (optional)
+  - name: Jason Yin
+    email: jasonyin@live.com

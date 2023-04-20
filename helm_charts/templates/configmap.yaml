@@ -1,0 +1,10 @@
+#Author: <Jason Yin> (jasonyin@live.com)
+#File: configmap.yaml (c) 2023
+#Created: 2023-04-19T16:14:13.279Z
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"

@@ -9,7 +9,7 @@ resource "oci_core_instance" "worker" {
   compartment_id      = var.compartment_id
   shape               = "VM.Standard.E2.1.Micro"
 
-  display_name   = "${var.project_name}_worker"
+  display_name = "${var.project_name}_worker"
 
   create_vnic_details {
     subnet_id        = oci_core_subnet.public_subnet.id

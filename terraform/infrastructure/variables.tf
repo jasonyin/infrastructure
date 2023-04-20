@@ -1,3 +1,14 @@
+/*
+Author: <Jason Yin> (jasonyin@live.com)
+File: variables.tf (c) 2023
+Created: 2023-04-05T02:30:09.426Z
+*/
+
+variable "project_name" {
+  description = "Project name"
+  type        = string
+}
+
 variable "compartment_id" {
   description = "OCI Compartment ID"
   type        = string

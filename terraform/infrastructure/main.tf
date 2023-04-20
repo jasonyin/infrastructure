@@ -27,7 +27,6 @@ module "k3s_infra" {
   freetier_worker_ad_list = local.freetier_worker_ad_list
 }
 
-
 /*module "network" {
   source = "./network"
 

@@ -21,7 +21,7 @@ done
 
 mkdir /home/opc/.kube
 cp /etc/rancher/k3s/k3s.yaml /home/opc/.kube/config
-sed -i "s/127.0.0.1/$(hostname -i)/g" /home/opc/.kube/config
+sed -i "s/127.0.0.1/server.public.main.oraclevcn.com/g" /home/opc/.kube/config
 chown opc:opc /home/opc/.kube/ -R
 
 cat > ~/.profile << EOF

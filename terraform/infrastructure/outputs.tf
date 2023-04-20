@@ -5,5 +5,5 @@ Created: 2023-04-05T17:22:18.041Z
 */
 
 output "server_metadata" {
-  value = oci_core_instance.server.metadata
+  value = module.k3s_infra.server_metadata
 }
